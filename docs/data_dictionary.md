@@ -70,3 +70,11 @@
 - Predictions regress toward the mean: low demand is over-predicted, high demand under-predicted.
 - Leakage test: adding Duration lifts R2 to ~0.79, but Duration is unknown at session start,
   so it is excluded from the real model.
+
+  ## Forecasting findings
+- Daily demand averages about 3,480 kWh, with a clear weekly pattern (Thursday highest, Sunday lowest).
+- Evaluated with a rolling backtest: 12 weekly origins, 7-day horizon.
+- All methods land within a narrow band (MAE about 490-580 kWh/day, about 14-17% of average demand).
+- I chose a seasonal-average forecast for the weekday shape.
+- Limitations: only one year of data (no annual seasonality can be learned), and an apparent outage
+  on 5 September 2022 (42 sessions vs about 220 normal) was kept in the data.

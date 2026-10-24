@@ -1,0 +1,7 @@
+,MAE_kWh,MAPE_pct
+Holt-Winters,413.93,14.99
+Moving average (7 days),488.07,16.62
+Seasonal average (last 4 weeks),495.32,17.83
+Trend + weekday regression,530.79,18.98
+Seasonal naive (last week),562.73,19.42
+Naive (last value),581.65,17.29
