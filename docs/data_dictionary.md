@@ -44,3 +44,12 @@
 2. **UserID = 0 must be excluded from user-history features.** Treating 31,553 unrelated sessions as one "heavy user" would create a fake history.
 3. **Classification target.** High Demand means Demand ≥ 14.1. This gives 50.05% High and 49.95% Normal, which is balanced by construction. 58 sessions sit exactly on the median and fall into High. SMOTE/ADASYN are not needed for this target, so we will state that honestly and demonstrate them on a stricter optional "peak" target.
 4. **High-cardinality IDs.** ChargerID (2,119 values) and UserID (2,337 values) cannot be one-hot encoded sensibly. We will use history-based features, such as a charger's past average demand, built so they only use earlier sessions.
+
+## Cleaning summary
+- Removed 13 duplicates and 17 sessions ending before they start.
+- Built datetimes from Day + Time to keep seconds.
+- Recorded Duration disagrees with timestamps in about 2,200 rows;
+  added DurationCalc and a flag instead of deleting those rows.
+- Outliers reported but kept (real long sessions).
+- UserID 0 flagged as IsKnownUser = False.
+- Data sorted by StartDatetime and saved to data/processed/clean_sessions.csv.
