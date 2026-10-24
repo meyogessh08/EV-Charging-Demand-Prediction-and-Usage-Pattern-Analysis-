@@ -62,3 +62,11 @@
 - Excluded for leakage: Duration, DurationCalc, EndDatetime (unknown at session start).
 - Limitation: one year of data, so August never appears in training.
 
+## Regression findings
+- Baseline (predict the average) gives R2 ~ 0.00, MAE ~ 10.9.
+- All real models land within a narrow band (R2 ~ 0.31 - 0.35).
+- Best model: LightGBM , R2 = 0.351, MAE = 8.159 (about 25% better than baseline).
+- The gaps between models are small, so I do not claim one is decisively better.
+- Predictions regress toward the mean: low demand is over-predicted, high demand under-predicted.
+- Leakage test: adding Duration lifts R2 to ~0.79, but Duration is unknown at session start,
+  so it is excluded from the real model.
