@@ -53,3 +53,15 @@
 - Outliers reported but kept (real long sessions).
 - UserID 0 flagged as IsKnownUser = False.
 - Data sorted by StartDatetime and saved to data/processed/clean_sessions.csv.
+
+## EDA key findings
+1. Demand is right-skewed: median 14.1, mean 17.4.
+2. Charger Type 1 delivers more per session than Type 0.
+3. Camping, accommodation and bus garage have the highest per-session demand,
+   but accommodation and bus garage have very few sessions.
+4. Session volume peaks around 17:00-18:00; per-session demand is highest overnight.
+5. Weekdays and weekends have similar demand per session.
+6. Sessions roughly doubled over the year; September 2021 is a partial month.
+7. Over half of chargers have fewer than 10 sessions; the busiest 10% handle
+   about 63% of sessions.
+8. Demand correlates 0.60 with duration, which is not known at session start.
