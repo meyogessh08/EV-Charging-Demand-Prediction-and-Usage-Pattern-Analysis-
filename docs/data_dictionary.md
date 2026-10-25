@@ -78,3 +78,13 @@
 - I chose a seasonal-average forecast for the weekday shape.
 - Limitations: only one year of data (no annual seasonality can be learned), and an apparent outage
   on 5 September 2022 (42 sessions vs about 220 normal) was kept in the data.
+
+## Classification findings
+- Target: High Demand = Demand >= 14.2 (train median). Classes are ~50/50, so resampling is not needed.
+- Best models (Random Forest / boosting) reach ROC-AUC ~0.80, F1 ~0.73; simple Logistic Regression is within ~0.02.
+- Same factors as regression: a user's past average demand, the charger's past average, and start hour.
+- Imbalance experiment on a stricter "peak" target (top 10%):
+  accuracy is misleading (90% by always guessing 'not peak'), recall of the baseline model is only ~27%.
+- Resampling and class weights raise recall to ~76% but lower precision to ~30%; ROC-AUC barely changes.
+- SVM was trained on a 15,000-row sample for speed.
+
