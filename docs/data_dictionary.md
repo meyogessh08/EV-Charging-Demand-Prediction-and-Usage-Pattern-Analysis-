@@ -88,3 +88,11 @@
 - Resampling and class weights raise recall to ~76% but lower precision to ~30%; ROC-AUC barely changes.
 - SVM was trained on a 15,000-row sample for speed.
 
+## Explainability findings
+- SHAP's global ranking matches permutation importance: user's past average demand,
+  the charger's past average, then start hour.
+- Late-evening and overnight start hours push predicted demand up; midday pushes it down.
+- Waterfall plots show how each feature moved one prediction away from the average (the values add up exactly).
+- LIME agrees on the leading features for the same session, but is random and varies slightly with its seed.
+- Caveat: SHAP and LIME describe what the model uses, not what causes demand.
+
