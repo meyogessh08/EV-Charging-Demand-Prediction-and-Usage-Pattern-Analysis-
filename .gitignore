@@ -2,3 +2,7 @@
 __pycache__/
 .ipynb_checkpoints/
 data/raw/
+.venv/
+.agents/
+.claude/
+__pycache__/

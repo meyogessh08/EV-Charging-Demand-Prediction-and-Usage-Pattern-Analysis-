@@ -1,4 +1,5 @@
 """Loading, filtering and summarising the cleaned charging sessions."""
+
 import pandas as pd
 
 from src.config import CLEAN_DATA_PATH
@@ -41,7 +42,8 @@ def compute_kpis(sessions):
 def demand_by(sessions, column):
     """Number of sessions, average and total demand for each value of one column."""
     summary = sessions.groupby(column)["Demand"].agg(
-        Sessions="size", AvgDemand="mean", TotalDemand="sum")
+        Sessions="size", AvgDemand="mean", TotalDemand="sum"
+    )
     return summary.round(2).reset_index().sort_values("AvgDemand", ascending=False)
 
 
@@ -54,7 +56,8 @@ def hourly_profile(sessions):
 def weekday_hour_table(sessions):
     """Number of sessions for every weekday and hour (rows = weekday, columns = hour)."""
     table = sessions.pivot_table(
-        index="DayOfWeek", columns="Hour", values="Demand", aggfunc="size", fill_value=0)
+        index="DayOfWeek", columns="Hour", values="Demand", aggfunc="size", fill_value=0
+    )
     table = table.reindex(index=range(7), columns=range(24), fill_value=0)
     table.index = WEEKDAYS
     return table
@@ -62,7 +65,10 @@ def weekday_hour_table(sessions):
 
 def daily_series(sessions):
     """One row per calendar day: sessions, total demand and a 7-day average of sessions."""
-    daily = sessions.set_index("StartDatetime").resample("D").agg(
-        Sessions=("Demand", "size"), TotalDemand=("Demand", "sum"))
+    daily = (
+        sessions.set_index("StartDatetime")
+        .resample("D")
+        .agg(Sessions=("Demand", "size"), TotalDemand=("Demand", "sum"))
+    )
     daily["Sessions_7d"] = daily["Sessions"].rolling(7).mean()
     return daily.reset_index()

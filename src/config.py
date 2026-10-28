@@ -1,4 +1,5 @@
 """Paths and colours shared by the dashboard, the tests and the notebooks."""
+
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]

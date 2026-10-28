@@ -1,0 +1,9 @@
+line-length = 99
+
+[lint]
+select = ["E", "F", "W"]
+ignore = ["E501"]            # long lines are wrapped by "ruff format" instead
+
+[lint.per-file-ignores]
+"app/app.py" = ["E402"]              # imports must come after sys.path is set
+"tests/test_project.py" = ["E402"]   # same reason
