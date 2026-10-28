@@ -6,3 +6,8 @@ data/raw/
 .agents/
 .claude/
 __pycache__/
+
+.venv/
+.agents/
+.claude/
+__pycache__/
